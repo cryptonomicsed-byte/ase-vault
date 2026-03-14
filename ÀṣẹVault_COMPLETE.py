@@ -286,7 +286,7 @@ from datetime import datetime
 # — SELF-ORGANIZING ENGINE — (drop this at bottom of file)
 
 def save(): 
-    with open("ÀṣẹVault_COMPLETE.json", "w") as f: json.dump(Àṣẹ, f, indent=4, sort_keys=True)
+    with open("ÀṣẹVault_COMPLETE.json", "w") as f: json.dump(Àṣẹ, f, indent=4, sort_keys=False)
     print("ÀṣẹVault COMPLETE state saved — thunder sealed ⚡")
 
 def log(m): 
