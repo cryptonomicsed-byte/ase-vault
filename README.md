@@ -3,6 +3,8 @@
 ![Layer](https://img.shields.io/badge/layer-Security-red)
 # ÀṣẹVault
 
+ÀṣẹVault is the cryptographic shrine of the Technosis ecosystem — securing sovereign identity, ritual keys, and agent credentials through BIP-39 entropy and Ed25519 signatures.
+
 One-file shrine. 155 opcodes. Mint Àṣẹ on proof. Sabbath guards baked in.
 
 Run: python ÀṣẹVault_COMPLETE.py
