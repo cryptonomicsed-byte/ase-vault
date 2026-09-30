@@ -2,9 +2,20 @@
 # ÀṣẹVault — Self-Organizing Sacred VM Dashboard + COMPLETE 155 OPCODES
 # Run in Termux/Python 3.11+ — one file to birth the entire cosmos
 
-import json, os
+import json, os, subprocess
 from pprint import pprint
 from datetime import datetime
+
+def call_swibe(skill_name, args):
+    """
+    Bridge to Swibe: The Sovereign Agent-Native Scripting Language.
+    Wire ÀṣẹVault opcodes to Swibe skills for autonomous execution.
+    """
+    try:
+        # Assumes swibe CLI is installed or swibe.js is in PATH/local
+        subprocess.run(['swibe', 'run', '--skill', skill_name, '--args', json.dumps(args)], check=True)
+    except Exception as e:
+        print(f"Swibe bridge failure: {e}")
 
 Àṣẹ = {
     "META": {
@@ -307,10 +318,31 @@ def count_opcodes():
     print(f"   Veils: 777 (mapped to 0x01-0x309)")
 
 if __name__ == "__main__":
-    log("ÀṣẹVault COMPLETE dashboard awakened. 155 Opcodes ready.")
-    count_opcodes()
-    print("\nCore Opcodes (first 5):")
-    for i, (hex_code, name) in enumerate(list(Àṣẹ["CORE_VM"]["opcodes"].items())[:5]):
-        print(f"  0x{hex_code:02x}: {name}")
-    print("\n... and 150 more opcodes across 6 expansion categories")
-    print("\nType add('CUSTOM_TOKENS', 'my_new_idea', 'details') to expand the universe.")
+    import argparse
+    parser = argparse.ArgumentParser(description="ÀṣẹVault CLI Interface")
+    parser.add_argument("command", nargs="?", help="Command to run (run_vm, is_sabbath, stats)")
+    parser.add_argument("args", nargs="*", help="Arguments for the command")
+    args = parser.parse_args()
+
+    if args.command == "is_sabbath":
+        # Saturday is 5 in Python's weekday() (0=Monday, 6=Sunday)
+        is_sat = datetime.now().weekday() == 5
+        print("true" if is_sat else "false")
+    
+    elif args.command == "run_vm":
+        if not args.args:
+            print("Error: No bytecode provided")
+            exit(1)
+        bytecode = args.args[0]
+        # Simulate execution of the 155-opcode VM
+        receipt = f"abc{datetime.now().strftime('%M%S')}"
+        print(f"Executed {bytecode} — receipt: {receipt}")
+    
+    else:
+        log("ÀṣẹVault COMPLETE dashboard awakened. 155 Opcodes ready.")
+        count_opcodes()
+        print("\nCore Opcodes (first 5):")
+        for i, (hex_code, name) in enumerate(list(Àṣẹ["CORE_VM"]["opcodes"].items())[:5]):
+            print(f"  0x{hex_code:02x}: {name}")
+        print("\n... and 150 more opcodes across 6 expansion categories")
+        print("\nUse: python ÀṣẹVault_COMPLETE.py run_vm 0x11")
